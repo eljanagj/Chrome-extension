@@ -1,0 +1,39 @@
+{
+  "manifest_version": 3,
+  "name": "Google Drive Sidebar",
+  "version": "1.0",
+  "description": "A Chrome extension for Google Drive file navigation.",
+  "permissions": [
+    "identity",
+    "storage",
+    "identity.email",
+    "activeTab"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "index.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://drive.google.com/*"],
+      "js": ["content_script.js"]
+    }
+  ],
+  "oauth2": {
+    "client_id": "835129316618-rvp0v2v40ht873hqhoko6k5kdt6p7sb7.apps.googleusercontent.com",
+    "scopes": ["https://www.googleapis.com/auth/drive.readonly"]
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["index.js","icons/*"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}
